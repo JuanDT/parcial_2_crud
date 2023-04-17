@@ -15,10 +15,10 @@
 
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-secundary justify-content-center" style="background-color: rgb(149, 148, 148);">
-        <div class="row col-3 my-1" style="background-color: rgb(121, 121, 121); border-radius: 20px;">
+    <nav class="navbar navbar-expand-lg navbar-secundary justify-content-center" style="background-color: rgb(220, 220, 220); ">
+        <div class="row col-3 my-1" style="background-color: rgb(198, 198, 198); border-radius: 20px;">
             <div class="col">
-                <a class="nav-link text-center my-2" th:href="@{/}"><h1 style=" color: black;">Menú Ventas</h1></a>
+                <a class="nav-link text-center" th:href="@{/}"><h3 style=" color: black;">Menú Ventas</h3></a>
             </div>
         </div>            
     </nav>
@@ -63,12 +63,14 @@
 
                 <div class="container-fluid my-2 mt-3">
                     <div class="row d-flex justify-content-center">
-                      <div class="col-6">
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese un dato de búsqueda" th:value="${nombre}" style="margin-left: 220px;width: 300px;">
+                        <form class="form-inline" th:action="@{/}">
+                      <div class="col-5">
+                        <input type="text" class="form-control" id="entrada" name="entrada" placeholder="Ingrese un dato de búsqueda" th:value="${entrada}" style="margin-left: 140px;width: 300px;">
                       </div>
                       <div class="col-3">
-                        <button type="submit" class="btn btn-primary" style="margin-left: -20px;">Buscar</button>
+                        <button type="submit" class="btn btn-primary" style="margin-left: 150px;">Buscar</button>
                       </div>
+                    </form>
                     </div>
                   </div>
                   
@@ -76,30 +78,33 @@
                     <thead>
                         <tr>
                             <th>Nº Pedido</th>
+
                             <th>ID Cliente</th>
-                            <th>Categoría</th>
+                            <th>Nombre Cliente</th>                         
                             <th>Apellido 1</th>
                             <th>Apellido 2</th>
                             <th>Ciudad</th>                          
-                            <th>Nombre Cliente</th>
+                            <th>Categoría</th>
+
                             <th>ID Pedido</th>
                             <th>Cantidad</th>
                             <th>Fecha</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        
+                    <tbody>                    
                         <th:block th:each="clientePedido, stat : ${listaClientesPedidos}">
-                            <tr>
-                                
+                            <tr>                            
                                 <td class="table-bordered" id="thick-border" style="border-color: rgb(174, 174, 174);" th:text="${stat.index + 1}"></td>
                                 <!--clientes -->
                                 <td th:text="${clientePedido[0]}"></td>
-                                <td th:text="${clientePedido[1]}"></td>
-                                <td th:text="${clientePedido[2]}"></td>
-                                <td th:text="${clientePedido[3]}"></td>
-                                <td th:text="${clientePedido[4]}"></td>
+                                
                                 <td th:text="${clientePedido[5]}"></td>
+                                <td th:text="${clientePedido[1]}"></td>                             
+                                <td th:text="${clientePedido[2]}"></td>
+                                <td th:text="${clientePedido[4]}"></td>
+                                
+                                <td th:text="${clientePedido[3]}"></td>
+                                
                                 <!--pedidos -->
                                 <td class="table-bordered" style="background-color: rgb(174, 174, 174); border-right-color:  rgb(174, 174, 174); border-bottom-color: rgb(106, 105, 105);" th:text="${clientePedido[6]}"></td>
                                 <td class="table-bordered" style="background-color: rgb(174, 174, 174); border-right-color:  rgb(174, 174, 174); border-bottom-color: rgb(106, 105, 105);" th:text="${clientePedido[7]}"></td>

@@ -1,5 +1,6 @@
 package com.parcial.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,30 @@ public class IndexController {
 
     @GetMapping({ "/", "" })
     public String index(@RequestParam(value = "entrada", required = false) String entrada, Model model) {
-        List<Object[]> listaClientesPedidos = clienteService.listarClientesConPedidos();
+        List<Object[]> listaClientesPedidos = new ArrayList<>();
+
+        if (entrada != null && entrada.matches("^[0-9]+$")) {
+                      
+            listaClientesPedidos = clienteService.buscarClientesConPedidos(entrada);
+            if(listaClientesPedidos != null){
+
+                listaClientesPedidos = clienteService.buscarClientesConPedidos(entrada);
+                
+            }else{    
+                listaClientesPedidos = new ArrayList<>();          
+                model.addAttribute("listaClientesPedidos", listaClientesPedidos);
+                model.addAttribute("entrada", entrada);               
+                return "index";
+            }            
+        }else{
+
+            if(entrada != null && !entrada.isEmpty()){
+                listaClientesPedidos = clienteService.buscarClientesConPedidos(entrada);
+             }else{
+                listaClientesPedidos = clienteService.listarClientesConPedidos();
+             }
+        }
+
         model.addAttribute("entrada", entrada);
         model.addAttribute("listaClientesPedidos", listaClientesPedidos);
         return "index";

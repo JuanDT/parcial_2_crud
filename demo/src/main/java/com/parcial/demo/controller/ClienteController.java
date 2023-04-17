@@ -64,7 +64,7 @@ public class ClienteController {
                     }
                 }
             } else if (nombre != null && !nombre.isEmpty()) {
-                listaClientes = clienteService.listarClientesPorNombreOApellidos(nombre, nombre, nombre);
+                listaClientes = clienteService.listarClientesPorNombreOApellidosOCiudad(nombre, nombre, nombre, nombre);
             } else {
                 listaClientes = clienteService.listarClientes();
             }

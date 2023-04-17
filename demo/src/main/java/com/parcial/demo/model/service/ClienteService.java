@@ -22,11 +22,13 @@ public interface ClienteService {
 
     List<Cliente> listarClientesPorCategoriaNula();
  
-    List<Cliente> listarClientesPorNombreOApellidos(String nombre, String apellido1, String apellido2);
+    List<Cliente> listarClientesPorNombreOApellidosOCiudad(String nombre, String apellido1, String apellido2, String ciudad);
    
     List<Cliente> buscarPorNombreApellidoYCategoria(String nombre, String apellido, Integer categoria);
 
     List<Object[]> listarClientesConPedidos();
+
+    List<Object[]> buscarClientesConPedidos(String entrada);
     
     List<Cliente> findClienteWithPedidosById(Long id);
     

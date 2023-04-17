@@ -10,11 +10,12 @@
 </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed;
+    <nav class="navbar navbar-expand-lg navbar-light" style="position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 9999;">
+    z-index: 9999;
+    background-color: rgb(198, 198, 198);">
         <a class="navbar-brand ml-2" th:href="@{/}">Menú</a>
         
         <div class="collapse navbar-collapse ml-5" id="navbarNav">
@@ -34,6 +35,7 @@
     </nav>
 
     <div class="container mt-5">
+        <br>
         <h1>Lista de pedidos</h1>
         <br>
         <div class="container-fluid ">
@@ -44,7 +46,7 @@
                             <input type="date" class="form-control mr-2" id="fechaInicio" name="fechaInicio" th:value="${fechaInicio}" style="width: 145px;"> 
                             <h4 style="color:  rgb(66, 65, 65);">-</h4>
                             <input type="date" class="form-control col-auto ml-2" id="fechaFin" name="fechaFin" th:value="${fechaFin}" style="width: 145px;">
-                            <input type="text" class="form-control ml-2" id="numero" name="numero" placeholder="Ingrese Id, Cantidad, Cliente o Comercial" th:value="${numero}" style="width: 312px; text-align: center;">
+                            <input type="text" class="form-control ml-2" id="numero" name="numero" placeholder="Ingrese un dato de búsqueda" th:value="${numero}" style="width: 312px;">
  
                             <button type="submit" class="btn btn-primary ml-2">Buscar</button>
                             <button type="button" class="btn btn-secondary ml-2" onclick="limpiarCampos()">Limpiar</button>

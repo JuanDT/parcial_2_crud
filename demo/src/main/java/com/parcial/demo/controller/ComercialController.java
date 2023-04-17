@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.parcial.demo.model.entities.Comercial;
 import com.parcial.demo.model.service.ComercialService;
@@ -111,8 +112,16 @@ public class ComercialController {
 
 
     @GetMapping("/eliminar/{id}")
-    public String eliminarComercial(@PathVariable("id") Long id) {
-        comercialService.eliminarComercial(id);
+    public String eliminarComercial(@PathVariable("id") Long id, RedirectAttributes attributes) {
+        List<Comercial> comercial = comercialService.findComercialWithPedidosById(id);
+
+        if (comercial.size() == 0) {
+            comercialService.eliminarComercial(id);;
+            attributes.addFlashAttribute("mensaje", "Cliente comercial correctamente");
+        } else {
+            attributes.addFlashAttribute("error", "El comercial tiene pedidos asociados y no se puede eliminar");
+        }
+
         return "redirect:/comerciales/listar";
     }
 }

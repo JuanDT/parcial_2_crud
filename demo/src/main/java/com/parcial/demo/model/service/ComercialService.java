@@ -19,4 +19,6 @@ public interface ComercialService {
     Comercial buscarComercialPorId(long id);
 
     List<Comercial> buscarPorNombreApellidoCiudad(String parametro);
+
+    List<Comercial> findComercialWithPedidosById(Long id);
 }

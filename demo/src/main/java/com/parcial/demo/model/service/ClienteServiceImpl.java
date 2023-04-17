@@ -45,8 +45,8 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public List<Cliente> listarClientesPorNombreOApellidos(String nombre, String apellido1, String apellido2) {
-       return clienteRepository.findByNombreContainsOrApellido1ContainsOrApellido2Contains(nombre, apellido1, apellido2);
+    public List<Cliente> listarClientesPorNombreOApellidosOCiudad(String nombre, String apellido1, String apellido2, String ciudad) {
+       return clienteRepository.findByNombreContainsOrApellido1ContainsOrApellido2ContainsCiudadContains(nombre, apellido1, apellido2, ciudad);
     }
 
     
@@ -68,6 +68,11 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public List<Cliente> findClienteWithPedidosById(Long id) {
         return clienteRepository.findClienteWithPedidosById(id);
+    }
+
+    @Override
+    public List<Object[]> buscarClientesConPedidos(String entrada) {
+        return clienteRepository.buscarClientesConPedidos(entrada);
     }
 
     

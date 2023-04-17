@@ -9,11 +9,12 @@
 </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed;
+    <nav class="navbar navbar-expand-lg navbar-light " style="position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 9999;">
+    z-index: 9999;
+    background-color: rgb(198, 198, 198);">
         <a class="navbar-brand ml-2" th:href="@{/}">Menú</a>
         
         <div class="collapse navbar-collapse ml-5" id="navbarNav">
@@ -33,6 +34,7 @@
     </nav>
 
     <div class="container mt-5">
+      <br>
         <h1>Lista de comerciales</h1>
       <br>
         <div class="container-fluid ">
@@ -51,6 +53,9 @@
             </div>
              
          <hr>
+         <div th:if="${error}" class="alert alert-danger text-center" role="alert">
+          <p th:text="${error}"></p>
+        </div>
          <table class="table">
             <thead>
               <tr>

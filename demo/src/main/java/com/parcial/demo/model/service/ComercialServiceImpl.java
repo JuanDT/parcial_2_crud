@@ -43,6 +43,11 @@ public class ComercialServiceImpl implements ComercialService {
     @Override
     public List<Comercial> buscarPorNombreApellidoCiudad(String parametro) {       
         return comercialRepository.findByNombreContainsOrApellido1ContainsOrApellido2ContainsCiudadcontains(parametro, parametro, parametro, parametro);
+    }
+
+    @Override
+    public List<Comercial> findComercialWithPedidosById(Long id) {
+        return comercialRepository.findComercialWithPedidosById(id);
     }  
 
     

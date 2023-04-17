@@ -41,25 +41,62 @@ public class PedidoController {
     public String listarPedidos(
         @RequestParam(name = "fechaInicio", required = false) String fechaInicio,
         @RequestParam(name = "fechaFin", required = false) String fechaFin,
+        @RequestParam(name = "numero", required = false) Integer numero,
         Model model) {
         List<Pedido> listaPedidos = new ArrayList<>();
-              
-        if (fechaInicio != null && !fechaInicio.isEmpty() && fechaFin != null && !fechaFin.isEmpty()) {
-            listaPedidos = pedidoService.findByFechaBetween(fechaInicio, fechaFin);
-        } else if (fechaInicio != null && !fechaInicio.isEmpty() && (fechaFin == null || fechaFin.isEmpty())) {
-            listaPedidos = pedidoService.findByFechaGreaterThanEqual(fechaInicio);
-        } else if (fechaFin != null && !fechaFin.isEmpty() && (fechaInicio == null || fechaInicio.isEmpty())) {
-            listaPedidos = pedidoService.findByFechaLessThanEqual(fechaFin);
-        } else {
-            listaPedidos = pedidoService.listarPedidos();
-        }
-    
-        model.addAttribute("listaPedidos", listaPedidos);
-        model.addAttribute("fechaInicio", fechaInicio);
-        model.addAttribute("fechaFin", fechaFin);
-    
-        return "pedidos/listar";
+            
+                Long numero2 = null;
+            if (numero != null) {
+                numero2 = numero.longValue();
+            }
+
+
+                if (fechaInicio != null && !fechaInicio.isEmpty() && fechaFin != null && !fechaFin.isEmpty()) {
+                    if (numero != null) {
+                        Pedido pedido = pedidoService.buscarPedidoPorId(numero2);
+                        if (pedido != null && pedido.getFecha().compareTo(fechaInicio) >= 0 && pedido.getFecha().compareTo(fechaFin) <= 0) {
+                            listaPedidos.add(pedido);
+                        }
+                    } else {
+                        listaPedidos = pedidoService.findByFechaBetween(fechaInicio, fechaFin);
+                    }
+                } else if (fechaInicio != null && !fechaInicio.isEmpty() && (fechaFin == null || fechaFin.isEmpty())) {
+                    if (numero != null) {
+                        Pedido pedido = pedidoService.buscarPedidoPorId(numero2);
+                        if (pedido != null && pedido.getFecha().compareTo(fechaInicio) >= 0) {
+                            listaPedidos.add(pedido);
+                        }
+                    } else {
+                        listaPedidos = pedidoService.findByFechaGreaterThanEqual(fechaInicio);
+                    }
+                } else if (fechaFin != null && !fechaFin.isEmpty() && (fechaInicio == null || fechaInicio.isEmpty())) {
+                    if (numero != null) {
+                        Pedido pedido = pedidoService.buscarPedidoPorId(numero2);
+                        if (pedido != null && pedido.getFecha().compareTo(fechaFin) <= 0) {
+                            listaPedidos.add(pedido);
+                        }
+                    } else {
+                        listaPedidos = pedidoService.findByFechaLessThanEqual(fechaFin);
+                    }
+                } else {
+                    if (numero != null) {
+                        Pedido pedido = pedidoService.buscarPedidoPorId(numero2);
+                        if (pedido != null) {
+                            listaPedidos.add(pedido);
+                        }
+                    } else {
+                        listaPedidos = pedidoService.listarPedidos();
+                    }
+                }
+
+                model.addAttribute("listaPedidos", listaPedidos);
+                model.addAttribute("numero", numero);
+                model.addAttribute("fechaInicio", fechaInicio);
+                model.addAttribute("fechaFin", fechaFin);
+
+                return "pedidos/listar";
     }
+
      
           
 

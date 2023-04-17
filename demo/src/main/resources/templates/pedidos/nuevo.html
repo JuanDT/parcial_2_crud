@@ -1,0 +1,91 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Registrar nuevo pedido</title>
+        <link rel="stylesheet" th:href="@{/css/nuevo.css}" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body style="background-color: rgb(173, 173, 171); width: auto;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand ml-2" th:href="@{/}">Menú</a>
+
+        <div class="collapse navbar-collapse ml-5" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/clientes/listar}">Clientes</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/pedidos/listar}">Pedidos <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/comerciales/listar}">Comerciales</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div class="container mt-5 col-5">
+        <h1 class="text-center">Registrar nuevo pedido</h1>
+        <br>
+        <form th:action="@{/pedidos/guardar}" th:object="${pedido}" method="post">
+            <div class="form-group col-8 container">
+                <label for="cantidad">Cantidad</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" required pattern="[0-9]+" oninvalid="setCustomValidity('Ingrese solo números')" oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-8 container">
+                <label for="fecha">Fecha</label>
+                <input type="date" class="form-control" id="fecha" name="fecha">
+            </div>
+            <div class="form-group col-8 container">
+                <label for="cliente">Cliente</label>
+                <select class="form-control" id="cliente" name="cliente" required>
+                    <option value="">Seleccionar cliente...</option>
+                    <th:block th:each="cliente : ${clientes}">
+                        <option th:value="${cliente.id}" th:text="${cliente.nombre + ' ' + cliente.apellido1}"></option>
+                    </th:block>
+                </select>
+            </div>
+            <div class="form-group col-8 container">
+                <label for="comercial">Comercial</label>
+                <select class="form-control" id="comercial" name="comercial" required>
+                    <option value="">Seleccionar comercial...</option>
+                    <th:block th:each="comercial : ${comerciales}">
+                        <option th:value="${comercial.id}" th:text="${comercial.nombre + ' ' + comercial.apellido1}"></option>
+                    </th:block>
+                </select>
+                <div class="form-group col-8 container">
+                    <br>
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="btn-group" role="group">
+                            <button type="submit" class="btn btn-success mr-3">Registrar</button>
+                            <button type="button" class="btn btn-danger" onclick="location.href='/pedidos/listar'">Cancelar</button>
+                        </div>
+                    </div>
+                </div>         
+        </div>
+    </form>
+    </div>
+        <footer class="bg-dark text-light py-3">
+            <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                <p class="mb-0">Juan David Toro Mesa</p>
+                <p class="mb-0">Ingeniería de software</p>
+                </div>
+                <div class="col-md-6 text-md-right">
+                <p class="mb-0">Contacto:</p>
+                <a href="mailto:toro.juan.5633@eam.edu.co" class="text-white">Email</a>
+                <span class="mx-2">/</span>
+                <a href="#" class="text-white">LinkedIn</a>
+                <span class="mx-2">/</span>
+                <a href="https://github.com/JuanDT" target="_blank" class="text-white">GitHub</a>
+                </div>
+            </div>
+            </div>
+        </footer>
+    </body>         
+    </html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de comerciales</title>
+    <link rel="stylesheet" th:href="@{/css/listar.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;">
+        <a class="navbar-brand ml-2" th:href="@{/}">Menú</a>
+        
+        <div class="collapse navbar-collapse ml-5" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/clientes/listar}">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/pedidos/listar}">Pedidos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/comerciales/listar}">Comerciales <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Lista de comerciales</h1>
+      <br>
+        <div class="container-fluid ">
+            <div class="row">
+              <div class="col-12 p-0">
+                <form class="form-inline " th:action="@{/comerciales/listar}" method="get">
+                  <div class="d-flex w-100">
+                                 
+                      <input type="text" class="form-control mr-2 col-4" id="nombre" name="nombre" placeholder="Ingrese Id, Nombre, Apellidos o Ciudad" th:value="${nombre}">
+                   
+                    <button type="submit" class="btn btn-primary mr-2">Buscar</button>
+                    <a th:href="@{/comerciales/nuevo}" class="btn btn-success  ml-auto mr-5 ">Registrar Comercial</a>
+                  </div>
+                </form>
+            </div>
+            </div>
+             
+         <hr>
+         <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido 1</th>
+                <th>Apellido 2</th>
+                <th>Ciudad</th>
+                <th>Comisión</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="comercial : ${listaComerciales}">
+                <td th:text="${comercial.id}"></td>
+                <td th:text="${comercial.nombre}"></td>
+                <td th:text="${comercial.apellido1}"></td>
+                <td th:text="${comercial.apellido2}"></td>
+                <td th:text="${comercial.ciudad}"></td>
+                <td th:text="${comercial.comision}"></td>
+                <td>
+                    <a th:href="@{/comerciales/editar/{id}(id=${comercial.id})}" class="btn btn-warning btn-sm mr-2">
+                        Editar
+                    </a>
+                    <a th:href="@{/comerciales/eliminar/{id}(id=${comercial.id})}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este comercial?')">
+                        Eliminar
+                      </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+               
+        </div>
+        
+    </div>
+    <footer class="bg-dark text-light py-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="mb-0">Juan David Toro Mesa</p>
+              <p class="mb-0">Ingeniería de software</p>
+            </div>
+            <div class="col-md-6 text-md-right">
+              <p class="mb-0">Contacto:</p>
+              <a href="mailto:toro.juan.5633@eam.edu.co" class="text-white">Email</a>
+              <span class="mx-2">/</span>
+              <a href="#" class="text-white">LinkedIn</a>
+              <span class="mx-2">/</span>
+              <a href="https://github.com/JuanDT" target="_blank" class="text-white">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </footer> 
+</body>
+</html>

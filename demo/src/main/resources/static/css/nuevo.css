@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(84, 84, 82);
+    
+}
+
+.container.mt-5.col-5{
+    background-color: rgb(209, 209, 209);
+    width: 400%;
+    border-radius: 9px;
+    padding-top: 20px;
+    margin-bottom: 70px;
+    padding-bottom: 10px;
+}

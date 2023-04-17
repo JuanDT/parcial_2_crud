@@ -1,0 +1,14 @@
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+
+
+#thick-border {
+  background-color: rgb(174, 174, 174);
+  font-weight: bold;
+}
+  

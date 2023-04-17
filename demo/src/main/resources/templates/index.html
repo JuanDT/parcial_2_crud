@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+    
+    <link rel="stylesheet" th:href="@{/css/indexStyles.css}" />
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+         
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-secundary justify-content-center" style="background-color: rgb(149, 148, 148);">
+        <div class="row col-3 my-1" style="background-color: rgb(121, 121, 121); border-radius: 20px;">
+            <div class="col">
+                <a class="nav-link text-center my-2" th:href="@{/}"><h1 style=" color: black;">Menú Ventas</h1></a>
+            </div>
+        </div>            
+    </nav>
+    
+    <div class="container" style="margin-bottom: 65px; margin-top: 10px;">
+                 
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-3 text-center">
+                <div class="card ">
+                    <div class="card-body">
+                        <h6 class="card-title">Gestionar Clientes</h6>
+                        
+                        <a th:href="@{/clientes/listar}" class="btn btn-primary">Ir a Clientes</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 text-center">
+                <div class="card ">
+                    <div class="card-body">
+                        <h6 class="card-title">Gestionar Pedidos</h6>
+                        
+                        <a th:href="@{/pedidos/listar}" class="btn btn-primary">Ir a Pedidos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 text-center">
+                <div class="card ">
+                    <div class="card-body">
+                        <h6 class="card-title">Gestionar Comerciales</h6>
+                        
+                        <a th:href="@{/comerciales/listar}" class="btn btn-primary">Ir a Comerciales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-12">
+                <br>
+                <h3 class="text-center">Clientes y sus Pedidos</h3>
+
+                <div class="container-fluid my-2 mt-3">
+                    <div class="row d-flex justify-content-center">
+                      <div class="col-6">
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese un dato de búsqueda" th:value="${nombre}" style="margin-left: 220px;width: 300px;">
+                      </div>
+                      <div class="col-3">
+                        <button type="submit" class="btn btn-primary" style="margin-left: -20px;">Buscar</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th>Nº Pedido</th>
+                            <th>ID Cliente</th>
+                            <th>Categoría</th>
+                            <th>Apellido 1</th>
+                            <th>Apellido 2</th>
+                            <th>Ciudad</th>                          
+                            <th>Nombre Cliente</th>
+                            <th>ID Pedido</th>
+                            <th>Cantidad</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <th:block th:each="clientePedido, stat : ${listaClientesPedidos}">
+                            <tr>
+                                
+                                <td class="table-bordered" id="thick-border" style="border-color: rgb(174, 174, 174);" th:text="${stat.index + 1}"></td>
+                                <!--clientes -->
+                                <td th:text="${clientePedido[0]}"></td>
+                                <td th:text="${clientePedido[1]}"></td>
+                                <td th:text="${clientePedido[2]}"></td>
+                                <td th:text="${clientePedido[3]}"></td>
+                                <td th:text="${clientePedido[4]}"></td>
+                                <td th:text="${clientePedido[5]}"></td>
+                                <!--pedidos -->
+                                <td class="table-bordered" style="background-color: rgb(174, 174, 174); border-right-color:  rgb(174, 174, 174); border-bottom-color: rgb(106, 105, 105);" th:text="${clientePedido[6]}"></td>
+                                <td class="table-bordered" style="background-color: rgb(174, 174, 174); border-right-color:  rgb(174, 174, 174); border-bottom-color: rgb(106, 105, 105);" th:text="${clientePedido[7]}"></td>
+                                <td class="table-bordered" style="background-color: rgb(174, 174, 174); border-right-color:  rgb(174, 174, 174); border-bottom-color: rgb(106, 105, 105);" th:text="${clientePedido[8]}"></td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+                
+                
+            </div>
+        </div>  
+    </div>
+    
+     
+    <footer class="bg-dark text-light py-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="mb-0">Juan David Toro Mesa</p>
+              <p class="mb-0">Ingeniería de software</p>
+            </div>
+            <div class="col-md-6 text-md-right">
+              <p class="mb-0">Contacto:</p>
+              <a href="mailto:toro.juan.5633@eam.edu.co" class="text-white">Email</a>             
+              <span class="mx-2">/</span>
+              <a href="#" class="text-white">LinkedIn</a>
+              <span class="mx-2">/</span>
+              <a href="#" class="text-white">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+</body>
+</html>
+        
+            
+
+

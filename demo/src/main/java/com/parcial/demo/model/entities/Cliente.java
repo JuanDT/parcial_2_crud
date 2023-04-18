@@ -2,6 +2,7 @@ package com.parcial.demo.model.entities;
 
 import javax.validation.constraints.NotBlank;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @NotBlank(message = "El nombre es obligatorio")
@@ -39,8 +41,6 @@ public class Cliente {
     private String ciudad;
 
     @NotNull(message = "La categoría es obligatoria")
-    @Min(value = 1, message = "La categoría debe ser mayor o igual a 1")
-    @Max(value = 5, message = "La categoría debe ser menor o igual a 5")
     private Integer categoria;
 
 

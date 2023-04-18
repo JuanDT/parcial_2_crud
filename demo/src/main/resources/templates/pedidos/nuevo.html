@@ -34,7 +34,7 @@
         <form th:action="@{/pedidos/guardar}" th:object="${pedido}" method="post">
             <div class="form-group col-8 container">
                 <label for="cantidad">Cantidad</label>
-                <input type="number" class="form-control" id="cantidad" name="cantidad" required pattern="[0-9]+" oninvalid="setCustomValidity('Ingrese solo números')" oninput="setCustomValidity('')">
+                <input type="number" class="form-control" id="cantidad" name="cantidad" required pattern="[0-9]+"  oninput="setCustomValidity('')">
             </div>
             <div class="form-group col-8 container">
                 <label for="fecha">Fecha</label>

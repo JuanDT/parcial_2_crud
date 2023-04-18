@@ -78,11 +78,10 @@
                     <thead>
                         <tr>
                             <th>Nº Pedido</th>
-
-                            <th>ID Cliente</th>
-                            <th>Nombre Cliente</th>                         
+                            <th>ID Cliente</th>                                
                             <th>Apellido 1</th>
                             <th>Apellido 2</th>
+                            <th>Nombre Cliente</th>
                             <th>Ciudad</th>                          
                             <th>Categoría</th>
 
@@ -96,12 +95,16 @@
                             <tr>                            
                                 <td class="table-bordered" id="thick-border" style="border-color: rgb(174, 174, 174);" th:text="${stat.index + 1}"></td>
                                 <!--clientes -->
+
                                 <td th:text="${clientePedido[0]}"></td>
                                 
-                                <td th:text="${clientePedido[5]}"></td>
-                                <td th:text="${clientePedido[1]}"></td>                             
-                                <td th:text="${clientePedido[2]}"></td>
+                                <td th:text="${clientePedido[5]}"></td> 
+                               
                                 <td th:text="${clientePedido[4]}"></td>
+
+                                <td th:text="${clientePedido[2]}"></td>
+                               
+                                <td th:text="${clientePedido[1]}"></td>
                                 
                                 <td th:text="${clientePedido[3]}"></td>
                                 

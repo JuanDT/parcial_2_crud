@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -22,6 +23,7 @@ public class Comercial {
 
     @NotBlank(message = "El nombre es obligatorio")
     @Size(max = 100, message = "El nombre debe tener como máximo 100 caracteres")
+    @Pattern(regexp = "[A-Za-z]+", message = "Ingrese solo letras")
     @Column(name = "nombre")
     private String nombre;
 
